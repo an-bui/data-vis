@@ -21,3 +21,23 @@ bug_splat <- read_csv(here::here("data", "TableS2Insect-Kraghede-1997-2018.2.csv
   clean_names
 ```
 
+### 1. Cleaning
+```{r}
+clean_bugs01 <- bug_splat %>% 
+  unite("date", year, month, june_date, sep = "-", remove = "FALSE")
+
+clean_bugs02 <- clean_bugs01 %>% 
+  select(date, small_insects, large_insects) %>% 
+  pivot_longer(cols = small_insects:large_insects, names_to = "size", values_to = "count") %>% 
+  group_by(date, size) %>% 
+  summarize(sum = sum(count))
+  
+```
+
+
+
+
+
+
+
+
