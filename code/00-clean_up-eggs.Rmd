@@ -24,7 +24,12 @@ egg_shape <- read_csv(here::here("data", "Stoddard_et_al-egg_shape.csv")) %>%
 
 ### 1. Cleaning
 ```{r}
-
+ord <- egg_shape %>% 
+  group_by(order) %>% 
+  summarize(mean_asym = mean(asymmetry),
+            sd_asym = sd(asymmetry),
+            mean_elli = mean(ellipticity),
+            sd_elli = sd(ellipticity))
 ```
 
 ### 2. Figures
